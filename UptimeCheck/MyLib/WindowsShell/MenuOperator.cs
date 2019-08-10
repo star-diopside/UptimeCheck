@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace MyLib.WindowsShell
+namespace UptimeCheck.MyLib.WindowsShell
 {
     /// <summary>
     /// システムメニュー操作用クラス

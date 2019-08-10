@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MyLib.CustomControls;
+using UptimeCheck.MyLib.CustomControls;
 
-namespace UptimeCheck
+namespace UptimeCheck.Forms
 {
     public partial class UptimeCheckForm : CustomForm
     {

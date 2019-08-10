@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using MyLib.WindowsShell;
+using UptimeCheck.MyLib.WindowsShell;
 
-namespace MyLib.CustomControls
+namespace UptimeCheck.MyLib.CustomControls
 {
     /// <summary>
     /// ウィンドウ状態についてのイベントを追加したカスタムフォーム

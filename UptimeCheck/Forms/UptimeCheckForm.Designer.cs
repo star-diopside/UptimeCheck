@@ -1,4 +1,4 @@
-﻿namespace UptimeCheck
+﻿namespace UptimeCheck.Forms
 {
     partial class UptimeCheckForm
     {

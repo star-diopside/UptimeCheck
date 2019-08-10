@@ -47,22 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\MyLib\CustomControls\CustomForm.cs">
+    <Compile Include="Forms\UptimeCheckForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\MyLib\CustomControls\ToolStripTrackBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="src\MyLib\WindowsShell\MenuOperator.cs" />
-    <Compile Include="src\UptimeCheck\UptimeCheckForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\UptimeCheck\UptimeCheckForm.Designer.cs">
+    <Compile Include="Forms\UptimeCheckForm.Designer.cs">
       <DependentUpon>UptimeCheckForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\UptimeCheck\Program.cs" />
+    <Compile Include="MyLib\CustomControls\CustomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyLib\CustomControls\ToolStripTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyLib\WindowsShell\MenuOperator.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="src\UptimeCheck\UptimeCheckForm.resx">
+    <EmbeddedResource Include="Forms\UptimeCheckForm.resx">
       <DependentUpon>UptimeCheckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

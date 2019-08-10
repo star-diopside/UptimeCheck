@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace MyLib.CustomControls
+namespace UptimeCheck.MyLib.CustomControls
 {
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
     public class ToolStripTrackBar : ToolStripControlHost
