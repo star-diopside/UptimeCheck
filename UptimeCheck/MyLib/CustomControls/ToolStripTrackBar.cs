@@ -3,13 +3,12 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace MyLib.CustomControls
+namespace UptimeCheck.MyLib.CustomControls
 {
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
     public class ToolStripTrackBar : ToolStripControlHost
     {
-        public ToolStripTrackBar()
-            : base(new TrackBar())
+        public ToolStripTrackBar() : base(new TrackBar())
         {
         }
 
@@ -17,13 +16,7 @@ namespace MyLib.CustomControls
         /// ホストしているTrackBarコントロール
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public TrackBar TrackBar
-        {
-            get
-            {
-                return (TrackBar)this.Control;
-            }
-        }
+        public TrackBar TrackBar => (TrackBar)Control;
 
         /// <summary>
         /// TrackBarコントロールのValueプロパティ変更イベント
@@ -51,13 +44,6 @@ namespace MyLib.CustomControls
         /// <summary>
         /// ホストされたTrackBarのValueChangedイベントを処理する
         /// </summary>
-        private void TrackBarValueChangedEvent(object sender, EventArgs e)
-        {
-            // ValueChangedイベントを発生させる
-            if (this.ValueChanged != null)
-            {
-                this.ValueChanged(this, e);
-            }
-        }
+        private void TrackBarValueChangedEvent(object sender, EventArgs e) => ValueChanged?.Invoke(this, e);
     }
 }

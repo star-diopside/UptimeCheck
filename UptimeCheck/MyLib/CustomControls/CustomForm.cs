@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using MyLib.WindowsShell;
+using UptimeCheck.MyLib.WindowsShell;
 
-namespace MyLib.CustomControls
+namespace UptimeCheck.MyLib.CustomControls
 {
     /// <summary>
     /// ウィンドウ状態についてのイベントを追加したカスタムフォーム
@@ -24,15 +24,7 @@ namespace MyLib.CustomControls
         /// ウィンドウを移動できるかどうかを示す値を取得または設定する
         /// </summary>
         [DefaultValue(true)]
-        public bool CanMove { get; set; }
-
-        /// <summary>
-        /// CustomFormクラスの新しいインスタンスを初期化する
-        /// </summary>
-        public CustomForm()
-        {
-            this.CanMove = true;
-        }
+        public bool CanMove { get; set; } = true;
 
         /// <summary>
         /// Windows メッセージを処理する
@@ -108,48 +100,24 @@ namespace MyLib.CustomControls
         /// MoveCanceledイベントを発生させる
         /// </summary>
         /// <param name="e">イベントデータを格納しているEventArgs</param>
-        protected virtual void OnMoveCanceled(EventArgs e)
-        {
-            if (this.MoveCanceled != null)
-            {
-                this.MoveCanceled(this, e);
-            }
-        }
+        protected virtual void OnMoveCanceled(EventArgs e) => MoveCanceled?.Invoke(this, e);
 
         /// <summary>
         /// Maximizeイベントを発生させる
         /// </summary>
         /// <param name="e">イベントデータを格納しているEventArgs</param>
-        protected virtual void OnMaximize(EventArgs e)
-        {
-            if (this.Maximize != null)
-            {
-                this.Maximize(this, e);
-            }
-        }
+        protected virtual void OnMaximize(EventArgs e) => Maximize?.Invoke(this, e);
 
         /// <summary>
         /// Minimizeイベントを発生させる
         /// </summary>
         /// <param name="e">イベントデータを格納しているEventArgs</param>
-        protected virtual void OnMinimize(EventArgs e)
-        {
-            if (this.Minimize != null)
-            {
-                this.Minimize(this, e);
-            }
-        }
+        protected virtual void OnMinimize(EventArgs e) => Minimize?.Invoke(this, e);
 
         /// <summary>
         /// Restoreイベントを発生させる
         /// </summary>
         /// <param name="e">イベントデータを格納しているEventArgs</param>
-        protected virtual void OnRestore(EventArgs e)
-        {
-            if (this.Restore != null)
-            {
-                this.Restore(this, e);
-            }
-        }
+        protected virtual void OnRestore(EventArgs e) => Restore?.Invoke(this, e);
     }
 }

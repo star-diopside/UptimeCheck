@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MyLib.CustomControls;
+using UptimeCheck.MyLib.CustomControls;
+using UptimeCheck.Properties;
 
-namespace UptimeCheck
+namespace UptimeCheck.Forms
 {
     public partial class UptimeCheckForm : CustomForm
     {
@@ -79,7 +80,8 @@ namespace UptimeCheck
 
             labelOSUptimeTitle.Location = new Point(maxTitleWidth - labelOSUptimeTitle.Width + 12, 8);
             labelOSUptime.Location = new Point(labelOSUptimeTitle.Right, labelOSUptimeTitle.Top);
-            labelProcUptimeTitle.Location = new Point(maxTitleWidth - labelProcUptimeTitle.Width + 12, labelOSUptimeTitle.Bottom + 4);
+            labelProcUptimeTitle.Location = new Point(maxTitleWidth - labelProcUptimeTitle.Width + 12,
+                                                      labelOSUptimeTitle.Bottom + 4);
             labelProcUptime.Location = new Point(labelProcUptimeTitle.Right, labelProcUptimeTitle.Top);
         }
 
@@ -90,24 +92,19 @@ namespace UptimeCheck
         {
             int maxLabelWidth = Math.Max(labelOSUptime.Width, labelProcUptime.Width);
 
-            this.ClientSize = new Size(labelOSUptime.Left + maxLabelWidth + labelOSUptimeTitle.Left, labelProcUptime.Bottom + labelOSUptime.Top);
+            this.ClientSize = new Size(labelOSUptime.Left + maxLabelWidth + labelOSUptimeTitle.Left,
+                                       labelProcUptime.Bottom + labelOSUptime.Top);
         }
 
         /// <summary>
         /// コントロールのサイズ変更時のイベント処理
         /// </summary>
-        private void ControlResizeEvent(object sender, EventArgs e)
-        {
-            AdjustFormSize();
-        }
+        private void ControlResizeEvent(object sender, EventArgs e) => AdjustFormSize();
 
         /// <summary>
         /// タイマイベント処理
         /// </summary>
-        private void TimerTickEvent(object sender, EventArgs e)
-        {
-            SetUptimeText();
-        }
+        private void TimerTickEvent(object sender, EventArgs e) => SetUptimeText();
 
         /// <summary>
         /// ラベルコントロールに起動時間を設定する
@@ -129,10 +126,7 @@ namespace UptimeCheck
         /// システム起動後のミリ秒単位の経過時間を取得する
         /// </summary>
         /// <returns>システム起動後のミリ秒単位の経過時間</returns>
-        private static long GetUptimeTick()
-        {
-            return Environment.TickCount;
-        }
+        private static long GetUptimeTick() => Environment.TickCount;
 
         /// <summary>
         /// TimeSpanの値を示す文字列を生成する
@@ -144,12 +138,12 @@ namespace UptimeCheck
             if (ts.Days >= 1)
             {
                 // １日を超える場合の文字列表現を返す
-                return string.Format(global::UptimeCheck.Properties.Resources.DateWithDayFormat, ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
+                return string.Format(Resources.DateWithDayFormat, ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
             }
             else
             {
                 // １日未満の場合の文字列表現を返す
-                return string.Format(global::UptimeCheck.Properties.Resources.DateWithoutDayFormat, ts.Hours, ts.Minutes, ts.Seconds);
+                return string.Format(Resources.DateWithoutDayFormat, ts.Hours, ts.Minutes, ts.Seconds);
             }
         }
 
@@ -215,7 +209,7 @@ namespace UptimeCheck
             base.OnMoveCanceled(e);
 
             // ツールチップでヘルプメッセージを表示する
-            toolTipMoveHelp.Show(global::UptimeCheck.Properties.Resources.MoveCancelHelpText, this, PointToClient(Control.MousePosition));
+            toolTipMoveHelp.Show(Resources.MoveCancelHelpText, this, PointToClient(Control.MousePosition));
 
             // マウスをキャプチャする
             this.Capture = true;
@@ -265,7 +259,7 @@ namespace UptimeCheck
         /// </summary>
         private void FontChangeEvent(object sender, EventArgs e)
         {
-            FontDialog dialog = new FontDialog();
+            using var dialog = new FontDialog();
 
             // ウィンドウのフォントを初期値として設定する
             dialog.Font = this.Font;
@@ -293,7 +287,7 @@ namespace UptimeCheck
             this.Opacity = (double)trackBar.Value / (trackBar.Maximum - trackBar.Minimum);
 
             // フォームの不透明度をテキストで表示する
-            menuItemOpacityText.Text = string.Format(global::UptimeCheck.Properties.Resources.OpacityTextFormat, (int)(this.Opacity * 100.0));
+            menuItemOpacityText.Text = string.Format(Resources.OpacityTextFormat, (int)(this.Opacity * 100.0));
         }
 
         /// <summary>
@@ -306,7 +300,7 @@ namespace UptimeCheck
             trackBar.Value = trackBar.Minimum + (int)((trackBar.Maximum - trackBar.Minimum) * this.Opacity);
 
             // フォームの不透明度をテキストで表示する
-            menuItemOpacityText.Text = string.Format(global::UptimeCheck.Properties.Resources.OpacityTextFormat, (int)(this.Opacity * 100.0));
+            menuItemOpacityText.Text = string.Format(Resources.OpacityTextFormat, (int)(this.Opacity * 100.0));
         }
 
         /// <summary>
@@ -314,18 +308,12 @@ namespace UptimeCheck
         /// </summary>
         private void PosMenuDropDownOpenedEvent(object sender, EventArgs e)
         {
-            ToolStripMenuItem[] menuItemArray = { menuItemPosNone, menuItemPosTopLeft, menuItemPosBottomLeft, menuItemPosTopRight, menuItemPosBottomRight, menuItemPosMiddleCenter };
+            ToolStripMenuItem[] menuItems = { menuItemPosNone, menuItemPosTopLeft, menuItemPosBottomLeft,
+                menuItemPosTopRight, menuItemPosBottomRight, menuItemPosMiddleCenter };
 
-            foreach (ToolStripMenuItem menuItem in menuItemArray)
+            foreach (ToolStripMenuItem menuItem in menuItems)
             {
-                if (this.Alignment.Equals(menuItem.Tag))
-                {
-                    menuItem.Checked = true;
-                }
-                else
-                {
-                    menuItem.Checked = false;
-                }
+                menuItem.Checked = this.Alignment.Equals(menuItem.Tag);
             }
         }
 
@@ -359,35 +347,17 @@ namespace UptimeCheck
             }
 
             Rectangle workArea = Screen.PrimaryScreen.WorkingArea;
-            Point pos = new Point();
 
-            switch (this.Alignment)
+            this.Location = this.Alignment switch
             {
-                case FormAlignment.TopLeft:
-                    pos.X = workArea.Left;
-                    pos.Y = workArea.Top;
-                    break;
-                case FormAlignment.BottomLeft:
-                    pos.X = workArea.Left;
-                    pos.Y = workArea.Bottom - this.Height;
-                    break;
-                case FormAlignment.TopRight:
-                    pos.X = workArea.Right - this.Width;
-                    pos.Y = workArea.Top;
-                    break;
-                case FormAlignment.BottomRight:
-                    pos.X = workArea.Right - this.Width;
-                    pos.Y = workArea.Bottom - this.Height;
-                    break;
-                case FormAlignment.MiddleCenter:
-                    pos.X = workArea.Left + (workArea.Width - this.Width) / 2;
-                    pos.Y = workArea.Top + (workArea.Height - this.Height) / 2;
-                    break;
-                default:
-                    throw new InvalidOperationException();
-            }
-
-            this.Location = pos;
+                FormAlignment.TopLeft => new Point(workArea.Left, workArea.Top),
+                FormAlignment.BottomLeft => new Point(workArea.Left, workArea.Bottom - this.Height),
+                FormAlignment.TopRight => new Point(workArea.Right - this.Width, workArea.Top),
+                FormAlignment.BottomRight => new Point(workArea.Right - this.Width, workArea.Bottom - this.Height),
+                FormAlignment.MiddleCenter => new Point(workArea.Left + (workArea.Width - this.Width) / 2,
+                                                        workArea.Top + (workArea.Height - this.Height) / 2),
+                _ => throw new InvalidOperationException()
+            };
         }
     }
 }
