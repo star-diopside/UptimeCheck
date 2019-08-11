@@ -39,18 +39,7 @@ namespace UptimeCheck.MyLib.WindowsShell
             IntPtr sysMenu = GetSystemMenu(HandleRef.ToIntPtr(windowHandle), false);
 
             // システムメニューの「移動」の表示を設定する
-            uint enableValue;
-
-            if (enable)
-            {
-                enableValue = MF_ENABLED;
-            }
-            else
-            {
-                enableValue = MF_DISABLED | MF_GRAYED;
-            }
-
-            EnableMenuItem(sysMenu, SC_MOVE, MF_BYCOMMAND | enableValue);
+            EnableMenuItem(sysMenu, SC_MOVE, MF_BYCOMMAND | (enable ? MF_ENABLED : MF_DISABLED | MF_GRAYED));
 
             // システムメニューを再描画する
             DrawMenuBar(sysMenu);
