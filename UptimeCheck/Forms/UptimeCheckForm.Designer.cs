@@ -34,7 +34,7 @@
             this.contextMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItemFont = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOpacity = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemOpacityValue = new MyLib.CustomControls.ToolStripTrackBar();
+            this.menuItemOpacityValue = new UptimeCheck.MyLib.CustomControls.ToolStripTrackBar();
             this.menuItemOpacityText = new System.Windows.Forms.ToolStripLabel();
             this.menuItemPos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPosNone = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +59,7 @@
             this.labelOSUptimeTitle.AutoSize = true;
             this.labelOSUptimeTitle.Location = new System.Drawing.Point(13, 9);
             this.labelOSUptimeTitle.Name = "labelOSUptimeTitle";
-            this.labelOSUptimeTitle.Size = new System.Drawing.Size(107, 12);
+            this.labelOSUptimeTitle.Size = new System.Drawing.Size(141, 20);
             this.labelOSUptimeTitle.TabIndex = 0;
             this.labelOSUptimeTitle.Text = "Windows起動時間 : ";
             // 
@@ -69,6 +69,7 @@
             // 
             // contextMain
             // 
+            this.contextMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemFont,
             this.menuItemOpacity,
@@ -77,13 +78,13 @@
             this.menuItemSeparator,
             this.menuItemUptimeReset});
             this.contextMain.Name = "contextMain";
-            this.contextMain.Size = new System.Drawing.Size(287, 120);
+            this.contextMain.Size = new System.Drawing.Size(290, 130);
             this.contextMain.Opened += new System.EventHandler(this.ContextMainOpenedEvent);
             // 
             // menuItemFont
             // 
             this.menuItemFont.Name = "menuItemFont";
-            this.menuItemFont.Size = new System.Drawing.Size(286, 22);
+            this.menuItemFont.Size = new System.Drawing.Size(289, 24);
             this.menuItemFont.Text = "フォントの変更(&F)";
             this.menuItemFont.Click += new System.EventHandler(this.FontChangeEvent);
             // 
@@ -93,7 +94,7 @@
             this.menuItemOpacityValue,
             this.menuItemOpacityText});
             this.menuItemOpacity.Name = "menuItemOpacity";
-            this.menuItemOpacity.Size = new System.Drawing.Size(286, 22);
+            this.menuItemOpacity.Size = new System.Drawing.Size(289, 24);
             this.menuItemOpacity.Text = "ウィンドウの不透明度(&O)";
             this.menuItemOpacity.DropDownOpened += new System.EventHandler(this.OpacityMenuDropDownOpenedEvent);
             // 
@@ -105,7 +106,7 @@
             // menuItemOpacityValue
             // 
             this.menuItemOpacityValue.TrackBar.AccessibleName = "menuItemOpacityValue";
-            this.menuItemOpacityValue.TrackBar.Location = new System.Drawing.Point(33, 3);
+            this.menuItemOpacityValue.TrackBar.Location = new System.Drawing.Point(41, 3);
             this.menuItemOpacityValue.TrackBar.Maximum = 20;
             this.menuItemOpacityValue.TrackBar.Name = "menuItemOpacityValue";
             this.menuItemOpacityValue.TrackBar.Size = new System.Drawing.Size(160, 45);
@@ -127,95 +128,97 @@
             this.menuItemPosBottomRight,
             this.menuItemPosMiddleCenter});
             this.menuItemPos.Name = "menuItemPos";
-            this.menuItemPos.Size = new System.Drawing.Size(286, 22);
+            this.menuItemPos.Size = new System.Drawing.Size(289, 24);
             this.menuItemPos.Text = "ウィンドウの位置(&P)";
             this.menuItemPos.DropDownOpened += new System.EventHandler(this.PosMenuDropDownOpenedEvent);
             // 
             // menuItemPosNone
             // 
             this.menuItemPosNone.Name = "menuItemPosNone";
-            this.menuItemPosNone.Size = new System.Drawing.Size(189, 22);
+            this.menuItemPosNone.Size = new System.Drawing.Size(205, 26);
             this.menuItemPosNone.Text = "指定しない(&N)";
             this.menuItemPosNone.Click += new System.EventHandler(this.PosSubMenuClickEvent);
             // 
             // menuItemPosTopLeft
             // 
             this.menuItemPosTopLeft.Name = "menuItemPosTopLeft";
-            this.menuItemPosTopLeft.Size = new System.Drawing.Size(189, 22);
+            this.menuItemPosTopLeft.Size = new System.Drawing.Size(205, 26);
             this.menuItemPosTopLeft.Text = "デスクトップ左上(&1)";
             this.menuItemPosTopLeft.Click += new System.EventHandler(this.PosSubMenuClickEvent);
             // 
             // menuItemPosBottomLeft
             // 
             this.menuItemPosBottomLeft.Name = "menuItemPosBottomLeft";
-            this.menuItemPosBottomLeft.Size = new System.Drawing.Size(189, 22);
+            this.menuItemPosBottomLeft.Size = new System.Drawing.Size(205, 26);
             this.menuItemPosBottomLeft.Text = "デスクトップ左下(&2)";
             this.menuItemPosBottomLeft.Click += new System.EventHandler(this.PosSubMenuClickEvent);
             // 
             // menuItemPosTopRight
             // 
             this.menuItemPosTopRight.Name = "menuItemPosTopRight";
-            this.menuItemPosTopRight.Size = new System.Drawing.Size(189, 22);
+            this.menuItemPosTopRight.Size = new System.Drawing.Size(205, 26);
             this.menuItemPosTopRight.Text = "デスクトップ右上(&3)";
             this.menuItemPosTopRight.Click += new System.EventHandler(this.PosSubMenuClickEvent);
             // 
             // menuItemPosBottomRight
             // 
             this.menuItemPosBottomRight.Name = "menuItemPosBottomRight";
-            this.menuItemPosBottomRight.Size = new System.Drawing.Size(189, 22);
+            this.menuItemPosBottomRight.Size = new System.Drawing.Size(205, 26);
             this.menuItemPosBottomRight.Text = "デスクトップ右下(&4)";
             this.menuItemPosBottomRight.Click += new System.EventHandler(this.PosSubMenuClickEvent);
             // 
             // menuItemPosMiddleCenter
             // 
             this.menuItemPosMiddleCenter.Name = "menuItemPosMiddleCenter";
-            this.menuItemPosMiddleCenter.Size = new System.Drawing.Size(189, 22);
+            this.menuItemPosMiddleCenter.Size = new System.Drawing.Size(205, 26);
             this.menuItemPosMiddleCenter.Text = "デスクトップ中央(&5)";
             this.menuItemPosMiddleCenter.Click += new System.EventHandler(this.PosSubMenuClickEvent);
             // 
             // menuItemTopMost
             // 
             this.menuItemTopMost.Name = "menuItemTopMost";
-            this.menuItemTopMost.Size = new System.Drawing.Size(286, 22);
+            this.menuItemTopMost.Size = new System.Drawing.Size(289, 24);
             this.menuItemTopMost.Text = "常に手前に表示する(&T)";
             this.menuItemTopMost.Click += new System.EventHandler(this.FormTopMostEvent);
             // 
             // menuItemSeparator
             // 
             this.menuItemSeparator.Name = "menuItemSeparator";
-            this.menuItemSeparator.Size = new System.Drawing.Size(283, 6);
+            this.menuItemSeparator.Size = new System.Drawing.Size(286, 6);
             // 
             // menuItemUptimeReset
             // 
             this.menuItemUptimeReset.Name = "menuItemUptimeReset";
-            this.menuItemUptimeReset.Size = new System.Drawing.Size(286, 22);
+            this.menuItemUptimeReset.Size = new System.Drawing.Size(289, 24);
             this.menuItemUptimeReset.Text = "プログラム起動時間をリセットする(&R)";
             this.menuItemUptimeReset.Click += new System.EventHandler(this.UptimeResetEvent);
             // 
             // labelProcUptimeTitle
             // 
             this.labelProcUptimeTitle.AutoSize = true;
-            this.labelProcUptimeTitle.Location = new System.Drawing.Point(12, 31);
+            this.labelProcUptimeTitle.Location = new System.Drawing.Point(12, 29);
             this.labelProcUptimeTitle.Name = "labelProcUptimeTitle";
-            this.labelProcUptimeTitle.Size = new System.Drawing.Size(108, 12);
+            this.labelProcUptimeTitle.Size = new System.Drawing.Size(135, 20);
             this.labelProcUptimeTitle.TabIndex = 1;
             this.labelProcUptimeTitle.Text = "プログラム起動時間 : ";
             // 
             // labelOSUptime
             // 
             this.labelOSUptime.AutoSize = true;
-            this.labelOSUptime.Location = new System.Drawing.Point(126, 9);
+            this.labelOSUptime.Location = new System.Drawing.Point(168, 15);
+            this.labelOSUptime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOSUptime.Name = "labelOSUptime";
-            this.labelOSUptime.Size = new System.Drawing.Size(0, 12);
+            this.labelOSUptime.Size = new System.Drawing.Size(0, 20);
             this.labelOSUptime.TabIndex = 2;
             this.labelOSUptime.Resize += new System.EventHandler(this.ControlResizeEvent);
             // 
             // labelProcUptime
             // 
             this.labelProcUptime.AutoSize = true;
-            this.labelProcUptime.Location = new System.Drawing.Point(126, 31);
+            this.labelProcUptime.Location = new System.Drawing.Point(168, 52);
+            this.labelProcUptime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProcUptime.Name = "labelProcUptime";
-            this.labelProcUptime.Size = new System.Drawing.Size(0, 12);
+            this.labelProcUptime.Size = new System.Drawing.Size(0, 20);
             this.labelProcUptime.TabIndex = 3;
             this.labelProcUptime.Resize += new System.EventHandler(this.ControlResizeEvent);
             // 
@@ -227,15 +230,16 @@
             // 
             // UptimeCheckForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 263);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(282, 253);
             this.ContextMenuStrip = this.contextMain;
             this.Controls.Add(this.labelProcUptime);
             this.Controls.Add(this.labelOSUptime);
             this.Controls.Add(this.labelProcUptimeTitle);
             this.Controls.Add(this.labelOSUptimeTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "UptimeCheckForm";
             this.Text = "システム起動時間";
@@ -271,4 +275,3 @@
         private System.Windows.Forms.ToolTip toolTipMoveHelp;
     }
 }
-

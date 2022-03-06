@@ -119,11 +119,11 @@
   </resheader>
   <data name="DateWithDayFormat" xml:space="preserve">
     <value>{0}日{1}時間{2}分{3}秒</value>
-    <comment>１日以上の時間を表すときに使用する文字列フォーマット</comment>
+    <comment>1日以上の時間を表すときに使用する文字列フォーマット</comment>
   </data>
   <data name="DateWithoutDayFormat" xml:space="preserve">
     <value>{0}時間{1}分{2}秒</value>
-    <comment>１日未満の時間を表すときに使用する文字列フォーマット</comment>
+    <comment>1日未満の時間を表すときに使用する文字列フォーマット</comment>
   </data>
   <data name="MoveCancelHelpText" xml:space="preserve">
     <value>ウィンドウ位置の自動調整機能を有効にしているため、ウィンドウを移動することはできません。</value>
