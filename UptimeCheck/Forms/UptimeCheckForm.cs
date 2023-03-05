@@ -340,6 +340,12 @@ public partial class UptimeCheckForm : CustomForm
             return;
         }
 
+        // プライマリディスプレイが取得できない場合は何も処理しない
+        if (Screen.PrimaryScreen is null)
+        {
+            return;
+        }
+
         Rectangle workArea = Screen.PrimaryScreen.WorkingArea;
 
         Location = Alignment switch
